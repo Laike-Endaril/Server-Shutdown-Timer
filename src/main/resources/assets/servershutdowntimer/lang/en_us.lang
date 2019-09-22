@@ -1,0 +1,4 @@
+servershutdowntimer.cmd.comment=§dShuts down the server after n seconds (60 seconds if no number is entered)
+servershutdowntimer.cmd.cancel.comment=§dCancels a timed shutdown of the server
+
+servershutdowntimer.error.notInProgress=§eCannot cancel; no shutdown in progress
