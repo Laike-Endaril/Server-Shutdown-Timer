@@ -2,7 +2,7 @@
 {
   "modid": "servershutdowntimer",
   "name": "Server Shutdown Timer",
-  "description": "Adds a command to start a timed, cancelable shutdown, with shutdown warning messages sent to all players",
+  "description": "Makes the 'stop' command start a timed, cancelable shutdown, with shutdown warning messages sent to all players",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
