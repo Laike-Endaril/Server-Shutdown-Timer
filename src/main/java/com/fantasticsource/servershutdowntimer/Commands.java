@@ -103,8 +103,6 @@ public class Commands extends CommandBase
         int hours = minutes / 60;
         minutes -= hours * 60;
 
-        System.out.println(hours + ", " + minutes + ", " + seconds);
-
         String message = TextFormatting.RED + "SERVER IS SHUTTING DOWN IN ";
         if (hours > 0) message += hours == 1 ? hours + " HOUR, " : hours + " HOURS, ";
         if (hours > 0 || minutes > 0) message += minutes == 1 ? minutes + " MINUTE" + (hours > 0 ? "," : "") + " AND " : minutes + " MINUTES" + (hours > 0 ? "," : "") + " AND ";
