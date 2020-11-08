@@ -14,7 +14,7 @@ public class ServerShutdownTimer
 {
     public static final String MODID = "servershutdowntimer";
     public static final String NAME = "Server Shutdown Timer";
-    public static final String VERSION = "1.12.2.001a";
+    public static final String VERSION = "1.12.2.002";
 
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event)
