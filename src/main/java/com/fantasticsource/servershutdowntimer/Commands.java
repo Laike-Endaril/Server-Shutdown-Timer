@@ -2,6 +2,7 @@ package com.fantasticsource.servershutdowntimer;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -122,10 +123,28 @@ public class Commands extends CommandBase
     @SubscribeEvent
     public static void playerLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
-        if (event.player instanceof EntityPlayerMP && timer > -1 && timer / 20 < 10)
+        EntityPlayer player = event.player;
+        if (player instanceof EntityPlayerMP && timer > -1)
         {
             int seconds = timer / 20;
-            ((EntityPlayerMP) event.player).connection.disconnect(new TextComponentString("Connection denied: the server is shutting down in " + seconds + " second" + (seconds == 1 ? "" : "s") + "!"));
+            if (seconds < 10)
+            {
+                ((EntityPlayerMP) player).connection.disconnect(new TextComponentString("Connection denied: the server is shutting down in " + seconds + " second" + (seconds == 1 ? "" : "s") + "!"));
+            }
+            else
+            {
+                int minutes = seconds / 60;
+                seconds -= minutes * 60;
+
+                int hours = minutes / 60;
+                minutes -= hours * 60;
+
+                String message = TextFormatting.RED + "SERVER IS SHUTTING DOWN IN ";
+                if (hours > 0) message += hours == 1 ? hours + " HOUR, " : hours + " HOURS, ";
+                if (hours > 0 || minutes > 0) message += minutes == 1 ? minutes + " MINUTE" + (hours > 0 ? "," : "") + " AND " : minutes + " MINUTES" + (hours > 0 ? "," : "") + " AND ";
+                if (hours > 0 || minutes > 0 || seconds > 0) message += seconds == 1 ? seconds + " SECOND" : seconds + " SECONDS";
+                player.sendMessage(new TextComponentString(message + "!"));
+            }
         }
     }
 
